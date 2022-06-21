@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 
-const GRAPHQL = "https://wpwpengineatla.wpengine.com/graphql";
+const GRAPHQL = process.env.NEXT_PUBLIC_GRAPHQL_URL;
 
 const link = createHttpLink({
   uri: GRAPHQL,

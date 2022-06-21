@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-  // PRIMARY_DOMAIN should be a full URL including protocol, e.g. https://www.google.com
+
   const hasEnvVariable = !!process.env.PRIMARY_DOMAIN;
   const isDevelopment = process.env.NODE_ENV === "development";
 

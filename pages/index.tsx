@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       <NavigationBar />
       <main className={styles.main}>
         <h2>All Posts</h2>
-        {allPosts.map((post) => {
+        {allPosts.map((post: any) => {
           return (
             <>
               <h4>{post.title}</h4>

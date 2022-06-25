@@ -15,6 +15,7 @@ import { setHttpAgentOptions } from "next/dist/server/config";
 const Home: NextPage = () => {
   const [postData, setPostData] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState("");
+  const [convertedDate, setConvertedDate] = useState([]);
 
   const { loading, error, data } = useQuery(queryPosts);
 
@@ -30,6 +31,35 @@ const Home: NextPage = () => {
     }
   }, [data, searchValue]);
 
+  // const test = () => {
+    let testing: any = []
+    for (let i = 0; i < postData.length; i++) {
+      const splitDate = postData[i].date.split("T");
+      const newDateString = splitDate[0];
+      const newSplitDate = newDateString.split("-");
+
+      const year = newSplitDate[0];
+      const month = newSplitDate[1];
+      const day = newSplitDate[2];
+      const readable = `${month}/${day}/${year}`
+      testing.push(readable);
+    }
+  //   return testing;
+  // }
+
+const convertDate = (date: any) => {
+  const splitDate = date.split("T");
+  const newDateString = splitDate[0];
+  const newSplitDate = newDateString.split("-");
+
+  const year = newSplitDate[0];
+  const month = newSplitDate[1];
+  const day = newSplitDate[2];
+
+  return `${month}/${day}/${year}`;
+};
+
+  console.log(convertDate("2022-06-17T15:55:02"));
 
   return (
     <div>
@@ -40,12 +70,6 @@ const Home: NextPage = () => {
       </Head>
       <NavigationBar />
       <main className={styles.document}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>Welcome to WPEngine Atlas Info</h1>
-          <p className={styles.heroDescription}>
-            This is a collection of useful information about WPEngine.
-          </p>
-        </div>
 
         <h2>All Posts</h2>
         <div className={styles.searchBar}>
@@ -55,13 +79,14 @@ const Home: NextPage = () => {
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
-        {postData.map((post) => {
+        {postData.map((post, i) => {
           return (
             <>
               <div className="container">
                 <div className="card-deck">
                   <div className="card">
                     <h5 className="card-title">{post.title}</h5>
+                    <p>{ testing[i] }</p>
                     <div className="card-body">
                       <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                     </div>

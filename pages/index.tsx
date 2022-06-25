@@ -13,7 +13,7 @@ import {
 import { setHttpAgentOptions } from "next/dist/server/config";
 
 const Home: NextPage = () => {
-  const [postData, setPostData] = useState([]);
+  const [postData, setPostData] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState("");
 
   const { loading, error, data } = useQuery(queryPosts);
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (searchValue) {
       setPostData(
-        data.posts.nodes.filter((post) =>
+        data.posts.nodes.filter((post: any) =>
           post.title.toLowerCase().includes(searchValue.toLowerCase())
         )
       )

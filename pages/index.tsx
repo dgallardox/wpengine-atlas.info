@@ -71,7 +71,7 @@ const convertDate = (date: any) => {
       <NavigationBar />
       <main className={styles.document}>
 
-        <h2>All Posts</h2>
+        <h2>All Cool Posts</h2>
         <div className={styles.searchBar}>
           <input
             type="text"
